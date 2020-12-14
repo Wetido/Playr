@@ -43,3 +43,12 @@
 .list-group > li{
     transition: ease-in-out 0.5s;
 }
+
+.navbar div button
+{
+    background-color: #999999;
+    color: white;
+    border-radius: 12px;
+    border: none;
+    padding: 10px;
+}

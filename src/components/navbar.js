@@ -49,7 +49,7 @@ const Navbar = () => {
     return (
         <div className="navbar">
             <div>
-                <button onClick={handlePrevSong}>Poprzednia</button>
+                <button onClick={handlePrevSong}>Previous</button>
             </div>
             <div>
                 {isAudioPlaying === true ? 
@@ -57,7 +57,7 @@ const Navbar = () => {
                 : <button onClick={changeAudioHandler}>Start</button>}
             </div>
             <div>
-                <button onClick={handleNextSong}>Następna</button>
+                <button onClick={handleNextSong}>Next</button>
             </div>
         </div>
         
