@@ -1,39 +1,31 @@
 import React, {useState, useEffect} from 'react';
-import Playlist from 'react-mp3-player';
-import ReactHowler from 'react-howler'
+
 import "./css/main.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from "./components/navbar"
 
 const App = () => {
 
-  const [audio, setAudio] = useState(new Audio("https://goldfirestudios.com/proj/howlerjs/sound.ogg"))
-
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false)
-
-
-  const changeAudioHandler = () => {
-    
-    setIsAudioPlaying(!isAudioPlaying)
-  }
-
-  useEffect(() => {
-    if(isAudioPlaying){
-      audio.play()
-    }else{
-      audio.pause()
-    }
-
-  }, [isAudioPlaying])
-
-
+  
   return (
-    <div>
-      <div>
-        {isAudioPlaying === true ? 
-          <button onClick={changeAudioHandler}>Stop</button> 
-          : <button onClick={changeAudioHandler}>Start</button>}
-      </div>
-      <div className="divtext">
-          hello World
+
+    <div className="main-container">
+      <Navbar>
+
+      </Navbar>
+      <div className="row">
+        <div className="menu col-sm-2 card">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item active">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+        </div>
+        <div className="main col-sm-9 card">
+            Prawa
+        </div>
       </div>
     </div>
   );
