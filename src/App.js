@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Playlist from 'react-mp3-player';
 import ReactHowler from 'react-howler'
-
+import "./css/main.css"
 
 const App = () => {
 
@@ -27,9 +27,14 @@ const App = () => {
 
   return (
     <div>
-      {isAudioPlaying === true ? 
-        <button onClick={changeAudioHandler}>Stop</button> 
-        : <button onClick={changeAudioHandler}>Start</button>}
+      <div>
+        {isAudioPlaying === true ? 
+          <button onClick={changeAudioHandler}>Stop</button> 
+          : <button onClick={changeAudioHandler}>Start</button>}
+      </div>
+      <div className="divtext">
+          hello World
+      </div>
     </div>
   );
 }
