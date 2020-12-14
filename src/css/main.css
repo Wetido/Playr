@@ -36,11 +36,11 @@
     padding-top: 30px;
 }
 
-.list-group > li:hover{
+.inactive:hover{
     background-color: rgb(235, 223, 223);
 }
 
-.list-group > li{
+.inactive{
     transition: ease-in-out 0.5s;
 }
 
