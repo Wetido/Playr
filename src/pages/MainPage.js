@@ -1,17 +1,39 @@
 import React, {useState, useEffect} from 'react';
 import Navbar from "../components/navbar"
+import AddSong from "../components/AddSong"
 import "../css/main.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import base from "../db/firebase"
+import 'firebase/firestore';
 
 const MainPage = () => {
 
     const [active, setActive] = useState(0)
+    const [requests, setRequests] = useState([]);
 
+
+    
+    useEffect(() => {
+        
+        const fetchData = async () => {
+            const db = base.firestore();
+            const date = await db.collection("songs")
+
+            //setRequests(date.docs.map(doc => doc.data()))
+            //console.log(await date.get().docs)
+
+            date.onSnapshot((data) => {
+                setRequests(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+            })
+        }
+
+        fetchData();
+    }, []);
 
     return (
 
         <div className="main-container">
-            <Navbar></Navbar>
+            <Navbar songs={requests}></Navbar> 
             <div className="row">
                 <div className="menu col-sm-2 card">
                     <ul class="list-group list-group-flush">
@@ -20,10 +42,11 @@ const MainPage = () => {
                         <li class={active === 2 ? "active list-group-item" : "inactive list-group-item"} onClick={() => setActive(2)}>Search</li>
                         <li class={active === 3 ? "active list-group-item" : "inactive list-group-item"} onClick={() => setActive(3)}>Liblary</li>
                         <li class={active === 4 ? "active list-group-item" : "inactive list-group-item"} onClick={() => setActive(4)}>Accound & Settings</li>
+                        <li class={active === 5 ? "active list-group-item" : "inactive list-group-item"} onClick={() => setActive(5)}>Add song</li>
                     </ul>
                 </div>
                 <div className="main col-sm-9 card">
-                    Prawa
+                    {active === 5 ? <AddSong></AddSong> : null} 
                 </div>
             </div>
         </div>

@@ -8,24 +8,15 @@
 
 }
 .menu{
-    background-color: rgb(240, 233, 233);
-    height: 300px;
+    
     margin: auto;
-
-    -webkit-box-shadow: 3px 3px 5px 6px #ccc;  
-    -moz-box-shadow:    3px 3px 5px 6px #ccc;  
-    box-shadow:         3px 3px 5px 6px #ccc;
+    padding-bottom: 30px;
 }
 
 .main{
     margin: auto;
+    padding: 80px;
 
-    height: 300px;
-    background-color: rgb(184, 179, 179);
-
-    -webkit-box-shadow: 3px 3px 4px 5px #ccc;  
-    -moz-box-shadow:    3px 3px 4px 5px #ccc;  
-    box-shadow:         3px 3px 4px 5px #ccc;
 }
 
 .main-container{

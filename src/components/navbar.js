@@ -1,37 +1,60 @@
 import React, {useState, useEffect} from 'react';
+import base from "../db/firebase"
+import 'firebase/storage';
 
-const Navbar = () => {
-
-    //only for mocking purpose
-    const links = ["https://sethares.engr.wisc.edu/mp3s/simptun1.mp3" 
-        , "https://sethares.engr.wisc.edu/mp3s/challoct.mp3" 
-        , "https://goldfirestudios.com/proj/howlerjs/sound.ogg"]
+const Navbar = (props) => {
 
 
-    
-    const [audio] = useState(new Audio(links[0]))
+    const [songs, setSongs] = useState([])
+    const [audio] = useState(new Audio())
 
     const [isAudioPlaying, setIsAudioPlaying] = useState(false)
     const [songIndex, setSongIndex] = useState(0)
+
+    const [fetched, setFetched] = useState(false)
 
     const changeAudioHandler = () => {
         setIsAudioPlaying(!isAudioPlaying)
     }
     
     const handlePrevSong = () => {
+        if(songIndex - 1 >= 0){
+            setSongIndex(songIndex - 1);
+        }
 
-        setSongIndex(songIndex - 1);
     }
 
     const handleNextSong = () => {
-
-        setSongIndex(songIndex + 1);
+        if(songIndex + 1 < songs.length){
+            setSongIndex(songIndex + 1);
+        }
     }
 
+    const getSongLink = async () =>{
+
+        try {
+            const storageRef = base.storage().ref();
+            const fileRef = storageRef.child(songs[songIndex].audio_uuid)
+            audio.src = await fileRef.getDownloadURL()
+        }catch(error){}
+    }
+
+
     useEffect(() => {
-        
+
+        setSongs(props.songs)
+        //getSongLink()
+
+    },[props.songs])
+
+
+    useEffect(() => {
+
         if(isAudioPlaying){
-            //audio.load()
+            if(audio.src === null){
+                getSongLink()
+                audio.load()
+            }
             audio.play()
         }else{
             audio.pause()
@@ -41,13 +64,16 @@ const Navbar = () => {
 
     useEffect(() => {
 
-        audio.src = links[songIndex]
+        getSongLink()
         setIsAudioPlaying(false)
     },[songIndex])
 
 
     return (
         <div className="navbar">
+            <div>
+                Aktualnie gra - {songs.length !== 0 ? songs[songIndex].name : "Brak piosenki"}
+            </div>
             <div>
                 <button onClick={handlePrevSong}>Previous</button>
             </div>

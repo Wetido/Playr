@@ -47,6 +47,9 @@ const AddSong = () => {
             const db = base.firestore();
 
             await db.collection('songs').add(body)
+
+            window.alert("Dodano piosenkę")
+            
         }catch(error) {console.log(error)}
     }
 
