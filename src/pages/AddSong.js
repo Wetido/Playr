@@ -3,6 +3,9 @@ import "../css/add-song.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import base from "../db/firebase"
 import 'firebase/firestore';
+import 'firebase/storage';
+import { v4 as uuidv4 } from 'uuid';
+
 
 const AddSong = () => {
 
@@ -22,23 +25,30 @@ const AddSong = () => {
     }
 
     const addData = async () => {
-        const body = {
-            name : songName,
-            author : songAuthor
-        }
 
-        const db = base.firestore();
+        try { 
+            const imageUuidTemp = uuidv4()
+            const audioUuidTemp = uuidv4()
 
-        await db.collection('songs').add(body)
+            const storageRef = base.storage().ref();
+            const imageRef = storageRef.child(imageUuidTemp);
+            const audioRef = storageRef.child(audioUuidTemp);
 
+            await imageRef.put(coverImageFile);
+            await audioRef.put(audioFile);
+
+            const body = {
+                name : songName,
+                author : songAuthor,
+                cover_image_uuid : imageUuidTemp,
+                audio_uuid : audioUuidTemp
+            }
+
+            const db = base.firestore();
+
+            await db.collection('songs').add(body)
+        }catch(error) {console.log(error)}
     }
-
-    useEffect(()=>{
-        console.log(songName)
-        console.log(songAuthor)
-        console.log(coverImageFile)
-        console.log(audioFile)
-    },[songName])
 
     return (
 
