@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext } from 'react';
 import base from "../db/firebase"
 import 'firebase/storage';
+import { AuthContext } from "../db/auth";
 
 const Navbar = (props) => {
 
+    const { currentUser } = useContext(AuthContext);
 
     const [songs, setSongs] = useState([])
     const [audio] = useState(new Audio())
@@ -85,6 +87,12 @@ const Navbar = (props) => {
             <div>
                 <button onClick={handleNextSong}>Next</button>
             </div>
+            <div>
+                {currentUser.email}
+            </div>
+            <a class="nav-link" onClick={() => base.auth().signOut()}>
+                Sign Out <span class="sr-only">(current)</span>
+            </a>
         </div>
         
     );
