@@ -53,16 +53,67 @@ const AddSong = () => {
         }catch(error) {console.log(error)}
     }
 
+    const validate = async (args1, args2) => {
+        let proced1 = 0
+        let proced2 = 0
+        let proced3 = 0
+        let proced4 = 0
+
+        if (songName == null || songName == "")
+        {
+            window.alert("Enter song name!");
+            
+        }
+        else
+        {
+            proced1 = 1
+        }
+        
+        if (songAuthor == null || songAuthor == "")
+        {
+            window.alert("Enter author name!");
+        }
+        else
+        {
+            proced2 = 1
+        }
+        
+        if (coverImageFile == null || coverImageFile == "")
+        {
+            window.alert("Upload song cover!");
+        }
+        else
+        {
+            proced3 = 1
+        }
+        
+        if (audioFile == null || audioFile == "")
+        {
+            window.alert("upload song!");
+        }
+        else
+        {
+            proced4 = 1
+        }
+
+
+        if (proced1 == 1 && proced2 == 1 && proced3 == 1 && proced4 == 1)
+        {
+            addData()
+        }
+        
+    }
+    
     return (
 
         <div>
             <form>
                 <input type="text" placeholder="Nazwa piosenki" value={songName} onChange={(e) => setSongName(e.target.value)}></input><br></br>
                 <input type="text" placeholder="Autor" value={songAuthor} onChange={(e) => setSongAuthor(e.target.value)}></input><br></br>
-                <input type="file" className="file-input" onChange={handleChangeCoverImage}></input><br></br>
+                <input type="file" placeholder="okładka" className="file-input" onChange={handleChangeCoverImage}></input><br></br>
                 <input type="file" className="file-input" onChange={handleChangeAudio}></input><br></br>
             </form>
-            <button onClick={()=>addData()}>Dodaj</button>
+            <button onClick={()=>validate()}>Dodaj</button>
         </div>
     );
 }
