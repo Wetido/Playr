@@ -34,10 +34,12 @@ const Navbar = (props) => {
 
     const getSongLink = async () =>{
 
+        const currentAudio = audio.src
         try {
             const storageRef = base.storage().ref();
             const fileRef = storageRef.child(songs[songIndex].audio_uuid)
             audio.src = await fileRef.getDownloadURL()
+        
         }catch(error){}
     }
 
@@ -49,6 +51,12 @@ const Navbar = (props) => {
 
     },[props.songs])
 
+    useEffect(() => {
+
+        setSongIndex(props.currentSongId)
+        //getSongLink()
+
+    },[props.currentSongId])
 
     useEffect(() => {
 
@@ -57,6 +65,7 @@ const Navbar = (props) => {
                 getSongLink()
                 audio.load()
             }
+            audio.load()
             audio.play()
         }else{
             audio.pause()

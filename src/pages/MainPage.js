@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Navbar from "../components/navbar"
 import AddSong from "../components/AddSong"
+import SongList from "../components/SongList"
 import "../css/main.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import base from "../db/firebase"
@@ -10,8 +11,12 @@ const MainPage = () => {
 
     const [active, setActive] = useState(0)
     const [requests, setRequests] = useState([]);
+    const [currentSongId, setCurrentSongId] = useState(0)
 
-
+    const handleChangeSong = (id) => {
+        console.log(id)
+        setCurrentSongId(id)
+    }
     
     useEffect(() => {
         
@@ -33,7 +38,7 @@ const MainPage = () => {
     return (
 
         <div className="main-container">
-            <Navbar songs={requests}></Navbar> 
+            <Navbar songs={requests} currentSongId={currentSongId}></Navbar> 
             <div className="row">
                 <div className="menu col-sm-2 card">
                     <ul class="list-group list-group-flush">
@@ -47,6 +52,7 @@ const MainPage = () => {
                 </div>
                 <div className="main col-sm-9 card">
                     {active === 5 ? <AddSong></AddSong> : null} 
+                    {active === 3 ? <SongList songs={requests} handleChangeSong={handleChangeSong}></SongList> : null}
                 </div>
             </div>
         </div>
