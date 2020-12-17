@@ -108,12 +108,14 @@ const AddSong = () => {
 
         <div>
             <form>
-                <input type="text" placeholder="Nazwa piosenki" value={songName} onChange={(e) => setSongName(e.target.value)}></input><br></br>
-                <input type="text" placeholder="Autor" value={songAuthor} onChange={(e) => setSongAuthor(e.target.value)}></input><br></br>
+                <input class="songNameInput" type="text" placeholder="Song name" value={songName} onChange={(e) => setSongName(e.target.value)}></input><br></br>
+                <input class="songAthorInput" type="text" placeholder="Author" value={songAuthor} onChange={(e) => setSongAuthor(e.target.value)}></input><br></br>
+                <label className="coverAddSongLabel" >Cover (.png/.jpg file)</label><br></br>
                 <input type="file" placeholder="okładka" className="file-input" onChange={handleChangeCoverImage}></input><br></br>
+                <label className="songAddSongLabel">Song (.mp3 file)</label><br></br>
                 <input type="file" className="file-input" onChange={handleChangeAudio}></input><br></br>
             </form>
-            <button onClick={()=>validate()}>Dodaj</button>
+            <button class="addSongButton" onClick={()=>validate()}>Add</button>
         </div>
     );
 }

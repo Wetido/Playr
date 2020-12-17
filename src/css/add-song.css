@@ -2,3 +2,39 @@
 
     text-overflow: ellipsis;
 }
+
+input[type="file"]
+{
+    background-color: #333333;
+    border-radius: 10px;
+    color: white;
+}
+
+.songNameInput
+{
+    border-radius: 10px;
+    background-color: #333333;
+    color: white;
+}
+
+.songAthorInput
+{
+    border-radius: 10px;
+    background-color: #333333;
+    color: white;
+}
+
+.addSongButton
+{
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: #333333;
+    margin-top: 10px;
+}
+
+label
+{
+    padding-top: 10px;
+}
+
