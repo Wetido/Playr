@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { withRouter } from "react-router";
 import base from "../db/firebase";
-
+import 'firebase/firestore';
 
 const SignUp = ({ history }) => {
   const handleSignUp = useCallback(async event => {
@@ -11,6 +11,22 @@ const SignUp = ({ history }) => {
       await base
         .auth()
         .createUserWithEmailAndPassword(email.value, password.value);
+
+
+      const body = {
+        id: email.value,
+        role: "user",
+        banned: false,
+      }
+
+      const db = await base.firestore().collection('users').doc(email.value)
+      await db.set({
+            role: "user",
+            banned: false
+        });
+
+     // await db.collection('users').add(body)
+
       history.push("/");
     } catch (error) {
       alert(error);

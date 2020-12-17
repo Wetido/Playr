@@ -23,10 +23,7 @@ const MainPage = () => {
         const fetchData = async () => {
             const db = base.firestore();
             const date = await db.collection("songs")
-
-            //setRequests(date.docs.map(doc => doc.data()))
-            //console.log(await date.get().docs)
-
+            
             date.onSnapshot((data) => {
                 setRequests(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
             })
@@ -34,6 +31,8 @@ const MainPage = () => {
 
         fetchData();
     }, []);
+
+
 
     return (
 
