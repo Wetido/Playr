@@ -19,7 +19,6 @@ const MainPage = () => {
         setAudoFile(e.target.files[0])
     }
 
-
     const handleChangeCoverImage = async (e) => {
         setCoverImageFile(e.target.files[0])
     }
@@ -28,14 +27,41 @@ const MainPage = () => {
 
         <div>
             <div className="recomendedSongs">
-                Recomendet songs
-                <button class="recoButton">wielkość obrazu - 256x256</button>
-                <button class="recoButton"></button>
-                <button class="recoButton"></button>
-                <button class="recoButton"></button>
-                <button class="recoButton"></button>
+                Recomendet songs <br></br>
+                <button class="recoButton">
+                    <img src="#">title</img>
+                </button>
+                <button class="recoButton">
+                    <img src="#">title</img>
+                </button>
+                <button class="recoButton">
+                    <img src="#"></img>
+                </button>
+                <button class="recoButton">
+                    <img src="#"></img>
+                </button>
+                <button class="recoButton">
+                    <img src="#"></img>
+                </button>
             </div>
-            <div className="lastPlayingSongs"></div>
+            <div className="lastPlayingSongs">
+                Last Playing<br></br>
+                <button class="lastButton">
+                    <img src="#"></img>
+                </button>
+                <button class="lastButton">
+                    <img src="#"></img>
+                </button>
+                <button class="lastButton">
+                    <img src="#"></img>
+                </button>
+                <button class="lastButton">
+                    <img src="#"></img>
+                </button>
+                <button class="lastButton">
+                    <img src="#"></img>
+                </button>
+            </div>
         </div>
     );
 }

@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext } from 'react';
 import base from "../db/firebase"
 import 'firebase/storage';
-import "../css/song-list.css"
+import "../css/Home.css"
 
 const Navbar = (props) => {
 

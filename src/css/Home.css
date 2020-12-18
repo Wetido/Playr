@@ -1,0 +1,39 @@
+.recoButton
+{
+    min-width: 120px;
+    min-height: 120px;
+    margin: 20px;
+    border: none;
+    background-color: #777777;
+    border-radius: 15px;
+    transition: 0.5s;
+
+}
+
+.recoButton:hover
+{
+    position: relative;
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+    transition: 0.5s;
+
+    
+}
+
+.lastButton
+{
+    min-width: 120px;
+    min-height: 120px;
+    margin: 20px;
+    border: none;
+    background-color: #777777;
+    border-radius: 15px;
+    transition: 0.5s;
+
+}
+
+.lastButton:hover
+{
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+    margin-bottom: 10px;
+    transition: 0.5s;
+}

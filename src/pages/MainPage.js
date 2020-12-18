@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Navbar from "../components/navbar"
 import AddSong from "../components/AddSong"
 import SongList from "../components/SongList"
+import HomePage from "../components/HomePage"
 import "../css/main.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import base from "../db/firebase"
@@ -50,7 +51,8 @@ const MainPage = () => {
                     </ul>
                 </div>
                 <div className="main col-sm-9 card">
-                    {active === 5 ? <AddSong></AddSong> : null} 
+                    {active === 5 ? <AddSong></AddSong> : null}
+                    {active === 0 ? <HomePage></HomePage> : null} 
                     {active === 3 ? <SongList songs={requests} handleChangeSong={handleChangeSong}></SongList> : null}
                 </div>
             </div>
