@@ -11,7 +11,7 @@ import 'firebase/firestore';
 const MainPage = () => {
 
     const [active, setActive] = useState(0)
-    const [requests, setRequests] = useState([]);
+    const [songs, setSongs] = useState([]);
     const [currentSongId, setCurrentSongId] = useState(0)
 
     const handleChangeSong = (id) => {
@@ -26,7 +26,7 @@ const MainPage = () => {
             const date = await db.collection("songs")
             
             date.onSnapshot((data) => {
-                setRequests(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+                setSongs(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
             })
         }
 
@@ -38,7 +38,7 @@ const MainPage = () => {
     return (
 
         <div className="main-container">
-            <Navbar songs={requests} currentSongId={currentSongId}></Navbar> 
+            <Navbar songs={songs} currentSongId={currentSongId}></Navbar> 
             <div className="row">
                 <div className="menu col-sm-2 card">
                     <ul class="list-group list-group-flush">
@@ -52,7 +52,7 @@ const MainPage = () => {
                 </div>
                 <div className="main col-sm-9 card">
                     {active === 0 ? <HomePage></HomePage> : null} 
-                    {active === 3 ? <SongList songs={requests} handleChangeSong={handleChangeSong}></SongList> : null}
+                    {active === 3 ? <SongList songs={songs} handleChangeSong={handleChangeSong}></SongList> : null}
                     {active === 5 ? <AddSong></AddSong> : null}
 
                 </div>
