@@ -9,26 +9,14 @@ import { v4 as uuidv4 } from 'uuid';
 
 const MainPage = () => {
 
-    const [songName, setSongName] = useState(null)
-    const [songAuthor, setSongAuthor] = useState(null)
-    const [coverImageFile, setCoverImageFile] = useState(null)
-    const [audioFile, setAudoFile] = useState(null)
 
-
-    const handleChangeAudio = async (e) => {
-        setAudoFile(e.target.files[0])
-    }
-
-    const handleChangeCoverImage = async (e) => {
-        setCoverImageFile(e.target.files[0])
-    }
     
     return (
 
         <div>
             <div className="recomendedSongs">
                 Recomendet songs <br></br>
-                <button class="recoButton">
+                {/* <button class="recoButton">
                     <img src="#">title</img>
                 </button>
                 <button class="recoButton">
@@ -42,11 +30,11 @@ const MainPage = () => {
                 </button>
                 <button class="recoButton">
                     <img src="#"></img>
-                </button>
+                </button> */}
             </div>
             <div className="lastPlayingSongs">
                 Last Playing<br></br>
-                <button class="lastButton">
+                {/* <button class="lastButton">
                     <img src="#"></img>
                 </button>
                 <button class="lastButton">
@@ -60,7 +48,7 @@ const MainPage = () => {
                 </button>
                 <button class="lastButton">
                     <img src="#"></img>
-                </button>
+                </button> */}
             </div>
         </div>
     );

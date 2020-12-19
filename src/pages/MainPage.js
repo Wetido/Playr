@@ -51,9 +51,10 @@ const MainPage = () => {
                     </ul>
                 </div>
                 <div className="main col-sm-9 card">
-                    {active === 5 ? <AddSong></AddSong> : null}
                     {active === 0 ? <HomePage></HomePage> : null} 
                     {active === 3 ? <SongList songs={requests} handleChangeSong={handleChangeSong}></SongList> : null}
+                    {active === 5 ? <AddSong></AddSong> : null}
+
                 </div>
             </div>
         </div>
