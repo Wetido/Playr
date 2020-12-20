@@ -15,6 +15,16 @@ const AdminPanel = () => {
     const [requestAudiosUrls, setRequestsAudioUrls] = useState([])
 
 
+    const changeUserBanStatus = async (id, status) => {
+
+        const body = {
+            banned: status
+        }
+
+        const db = base.firestore()
+        await db.collection('users').doc(id).set(body, {merge: true});
+    }
+
     const acceptSong = async (id) => {
 
         const body = {
@@ -112,7 +122,8 @@ const AdminPanel = () => {
                             <tr>
                                 <th scope="row">{i+1}</th>
                                 <td>{user.id}</td>
-                                <th>{user.banned === false ? <Button className="btn-danger">BAN</Button> : <Button disabled="true" className="btn-danger">BANNED</Button>}</th>
+                                <th>{user.banned === false ? <Button className="btn-danger" onClick={() => changeUserBanStatus(user.id, true)}>Zbanuj</Button> 
+                                    : <Button className="btn-secondary" onClick={()=>changeUserBanStatus(user.id, false)}>Odbanuj</Button>}</th>
                             </tr>
                         ))}
                         </tbody>
@@ -141,7 +152,7 @@ const AdminPanel = () => {
                                 <td><a href={requestImagesUrls[i]} target="_blank"><img className="cover-image" src={requestImagesUrls[i]}></img></a></td>
                                 <td><a href={requestAudiosUrls[i]} target="_blank">Odsłuchaj</a></td>
                                 <td>{request.user}</td>
-                                <td><button onClick={() => acceptSong(i)}>Akceptuj</button></td>
+                                <td><Button onClick={() => acceptSong(i)}>Akceptuj</Button></td>
                             </tr>
                         ))}
                         </tbody>
