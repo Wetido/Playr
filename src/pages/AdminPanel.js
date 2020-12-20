@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import base from "../db/firebase"
 import 'firebase/firestore';
 import { Spinner } from "react-spinners-css";
+import {Button} from "react-bootstrap"
+import "../css/admin-panel.css"
 
 
 const AdminPanel = () => {
@@ -93,25 +95,57 @@ const AdminPanel = () => {
     }
 
     return (
-        <div>
-
-            <div>Witaj w panelu administratora</div><br></br>
+        <div className="admin-wrapper">
+            <div className="main-header">Witaj w panelu administratora</div><br></br>
             <div>
-                <div>Lista uzytkowników:</div>
-                {users.map(user => (
-                    <div>
-                        {user.id}
-                    </div>
-                ))}
+                <div className="header">Lista uzytkowników:</div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Użytkownik</th>
+                                <th scope="col">Ban</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {users.map((user,i) => (
+                            <tr>
+                                <th scope="row">{i+1}</th>
+                                <td>{user.id}</td>
+                                <th>{user.banned === false ? <Button className="btn-danger">BAN</Button> : <Button disabled="true" className="btn-danger">BANNED</Button>}</th>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
                 <br></br>
-                {requests.map((request, i) => (
-                    <div>
-                        <div>Autor - {request.author}</div>
-                        <img className="cover-image" src={requestImagesUrls[i]}></img>
-                        <a href={requestAudiosUrls[i]}> Nazwa - {request.name}</a>
-                        <button onClick={() => acceptSong(i)}>Akceptuj</button> 
-                    </div>
-                ))}
+
+                <div className="header">Lista requestów:</div>
+                <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nazwa</th>
+                                <th scope="col">Autor</th>
+                                <th scope="col">Okladka</th>
+                                <th scope="col">Plik</th>
+                                <th scope="col">Dodał</th>
+                                <th scope="col">Akceptuj</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {requests.map((request,i) => (
+                            <tr>
+                                <th scope="row">{i+1}</th>
+                                <td>{request.name}</td>
+                                <td>{request.author}</td>
+                                <td><a href={requestImagesUrls[i]} target="_blank"><img className="cover-image" src={requestImagesUrls[i]}></img></a></td>
+                                <td><a href={requestAudiosUrls[i]} target="_blank">Odsłuchaj</a></td>
+                                <td>{request.user}</td>
+                                <td><button onClick={() => acceptSong(i)}>Akceptuj</button></td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
             </div>
         </div>
     );

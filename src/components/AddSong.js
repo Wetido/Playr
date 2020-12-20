@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import "../css/add-song.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import base from "../db/firebase"
 import 'firebase/firestore';
 import 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
-
+import { AuthContext } from "../db/auth";
 
 const AddSong = () => {
+
+    const { currentUser } = useContext(AuthContext);
 
     const [songName, setSongName] = useState(null)
     const [songAuthor, setSongAuthor] = useState(null)
@@ -41,14 +43,15 @@ const AddSong = () => {
                 name : songName,
                 author : songAuthor,
                 cover_image_uuid : imageUuidTemp,
-                audio_uuid : audioUuidTemp
+                audio_uuid : audioUuidTemp,
+                user: currentUser.email
             }
 
             const db = base.firestore();
 
             await db.collection('requests').add(body)
 
-            window.alert("Dodano piosenkę")
+            window.alert("Dodano piosenke. Poczekaj na weryfikacje przez administratora")
             
         }catch(error) {console.log(error)}
     }

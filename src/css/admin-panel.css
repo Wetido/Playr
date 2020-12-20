@@ -1,0 +1,15 @@
+.admin-wrapper{
+
+    padding: 50px;
+}
+
+.main-header{
+
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.header{
+    font-size: 1.5rem;
+}
