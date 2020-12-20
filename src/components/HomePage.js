@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import "../css/add-song.css"
+import "../css/Home.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import base from "../db/firebase"
 import 'firebase/firestore';
@@ -15,40 +15,40 @@ const MainPage = () => {
 
         <div>
             <div className="recomendedSongs">
-                Recomendet songs <br></br>
-                {/* <button class="recoButton">
-                    <img src="#">title</img>
+                Recomended songs <br></br>
+                <button class="recoButton">
+                    <img></img>
                 </button>
                 <button class="recoButton">
-                    <img src="#">title</img>
+                    <img></img>
                 </button>
                 <button class="recoButton">
-                    <img src="#"></img>
+                    <img></img>
                 </button>
                 <button class="recoButton">
-                    <img src="#"></img>
+                <   img></img>
                 </button>
                 <button class="recoButton">
-                    <img src="#"></img>
-                </button> */}
+                    <img></img>
+                </button>
             </div>
             <div className="lastPlayingSongs">
                 Last Playing<br></br>
-                {/* <button class="lastButton">
-                    <img src="#"></img>
+                <button class="lastButton">
+                    <img></img>
                 </button>
                 <button class="lastButton">
-                    <img src="#"></img>
+                    <img></img>
                 </button>
                 <button class="lastButton">
-                    <img src="#"></img>
+                    <img></img>
                 </button>
                 <button class="lastButton">
-                    <img src="#"></img>
+                    <img></img>
                 </button>
                 <button class="lastButton">
-                    <img src="#"></img>
-                </button> */}
+                    <img></img>
+                </button>
             </div>
         </div>
     );
