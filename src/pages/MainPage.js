@@ -7,6 +7,7 @@ import "../css/main.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import base from "../db/firebase"
 import 'firebase/firestore';
+import DonateButton from '../components/DonateButton';
 
 const MainPage = () => {
 
@@ -40,7 +41,8 @@ const MainPage = () => {
         <div className="main-container">
             <Navbar songs={songs} currentSongId={currentSongId}></Navbar> 
             <div className="row">
-                <div className="menu col-sm-2 card">
+                <div className="menu col-sm-2">
+                    <div className="card">
                     <ul class="list-group list-group-flush">
                         <li class={active === 0 ? "active list-group-item" : "inactive list-group-item"} onClick={() => setActive(0)}>Home</li>
                         <li class={active === 1 ? "active list-group-item" : "inactive list-group-item"} onClick={() => setActive(1)}>Explore</li>
@@ -49,14 +51,22 @@ const MainPage = () => {
                         <li class={active === 4 ? "active list-group-item" : "inactive list-group-item"} onClick={() => setActive(4)}>Accound & Settings</li>
                         <li class={active === 5 ? "active list-group-item" : "inactive list-group-item"} onClick={() => setActive(5)}>Add song</li>
                     </ul>
+                    </div>
+                    <div className="card">
+                        <DonateButton></DonateButton>
+                    </div>
+
                 </div>
+                
                 <div className="main col-sm-9 card">
                     {active === 0 ? <HomePage></HomePage> : null} 
                     {active === 3 ? <SongList songs={songs} handleChangeSong={handleChangeSong}></SongList> : null}
                     {active === 5 ? <AddSong></AddSong> : null}
 
                 </div>
+                
             </div>
+            
         </div>
     );
 }
