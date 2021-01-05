@@ -16,10 +16,25 @@ const MainPage = () => {
     const [currentSongId, setCurrentSongId] = useState(0)
 
     const handleChangeSong = (id) => {
-        console.log(id)
+        //console.log(id)
         setCurrentSongId(id)
     }
+
+
+    ///Our songs in database are not in order
+    ///But when we get songs by listening count we need need 
+    ///To find it in unordered list by uuid
+    const handleChangeSongByUuid = (uuid) => {
+
+        const uuidArray = songs.map(function (obj) {
+            return obj.id;
+        });
+
+        setCurrentSongId(uuidArray.indexOf(uuid))  
+    }
     
+
+
     useEffect(() => {
         
         const fetchData = async () => {
@@ -59,7 +74,7 @@ const MainPage = () => {
                 </div>
                 
                 <div className="main col-sm-9 card">
-                    {active === 0 ? <HomePage></HomePage> : null} 
+                    {active === 0 ? <HomePage handleChangeSong={handleChangeSongByUuid}></HomePage> : null} 
                     {active === 3 ? <SongList songs={songs} handleChangeSong={handleChangeSong}></SongList> : null}
                     {active === 5 ? <AddSong></AddSong> : null}
 

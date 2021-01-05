@@ -3,7 +3,7 @@ import "../css/Home.css"
 import base from "../db/firebase"
 import 'firebase/firestore';
 
-const HomePage = () => {
+const HomePage = (props) => {
 
     const [songs, setSongs] = useState([]);
     const [coverImageUrls, setCoverImageUrls] = useState([])
@@ -48,7 +48,7 @@ const HomePage = () => {
             <div className="recomendedSongs">
                 Recomended songs <br></br>
                 {songs.map((song, i) => (
-                    <button class="recoButton">
+                    <button class="recoButton"  onClick={() => props.handleChangeSong(song.id)}>
                         <img class="recoImg" src={coverImageUrls[i]}></img>
                     </button>
                 ))}

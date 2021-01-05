@@ -36,7 +36,7 @@ const Navbar = (props) => {
     return (
         <div className="song-list-wrapper">
             {songs.length !== 0 ? songs.map((song, i) => (
-                <div className="song-wrapper"onClick={() => props.handleChangeSong(i)}>
+                <div className="song-wrapper" onClick={() => props.handleChangeSong(i)}>
                     <img className="cover-image" src={coverImageUrls[i]}></img>
                     <div className="song-name">{song.name}</div>
                 </div>
