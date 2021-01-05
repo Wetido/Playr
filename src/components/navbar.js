@@ -13,7 +13,7 @@ const Navbar = (props) => {
     const [isAudioPlaying, setIsAudioPlaying] = useState(false)
     const [songIndex, setSongIndex] = useState(0)
 
-    const [fetched, setFetched] = useState(false)
+    const [listeningCountIncreased, setListeningCountIncreased] = useState(false)
 
     const changeAudioHandler = () => {
         setIsAudioPlaying(!isAudioPlaying)
@@ -34,27 +34,39 @@ const Navbar = (props) => {
 
     const getSongLink = async () =>{
 
-        const currentAudio = audio.src
+        //const currentAudio = audio.src
         try {
             const storageRef = base.storage().ref();
             const fileRef = storageRef.child(songs[songIndex].audio_uuid)
-            audio.src = await fileRef.getDownloadURL()
-        
+            audio.src = await fileRef.getDownloadURL()  
+            setListeningCountIncreased(false)
         }catch(error){}
+    }
+
+    const incListeningCount = async () => {
+
+        try {
+
+            const db = base.firestore();
+            const listening = {
+                listening : songs[songIndex].listening + 1
+            }
+            await db.collection('songs').doc(songs[songIndex].id).set(listening, {merge: true});
+
+            setListeningCountIncreased(true)
+        }catch(error){console.log(error)}
     }
 
 
     useEffect(() => {
 
         setSongs(props.songs)
-        //getSongLink()
 
     },[props.songs])
 
     useEffect(() => {
 
         setSongIndex(props.currentSongId)
-        //getSongLink()
 
     },[props.currentSongId])
 
@@ -67,6 +79,10 @@ const Navbar = (props) => {
             }
             audio.load()
             audio.play()
+
+            if(!listeningCountIncreased){
+                incListeningCount()
+            } 
         }else{
             audio.pause()
         }

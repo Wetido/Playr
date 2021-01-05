@@ -31,7 +31,8 @@ const AdminPanel = () => {
             name : requests[id].name,
             author : requests[id].author,
             cover_image_uuid : requests[id].cover_image_uuid,
-            audio_uuid :  requests[id].audio_uuid
+            audio_uuid :  requests[id].audio_uuid,
+            listening : 0
         }
 
         const db = base.firestore();

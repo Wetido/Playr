@@ -5,7 +5,7 @@ import "../css/song-list.css"
 
 const Navbar = (props) => {
 
-  
+
     const [songs, setSongs] = useState([])
     const [coverImageUrls, setCoverImageUrls] = useState([])
 
