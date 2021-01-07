@@ -42,6 +42,8 @@ const HomePage = (props) => {
         
     }, []);
 
+
+
     return (
 
         <div>
@@ -69,8 +71,14 @@ const HomePage = (props) => {
                 </button> */}
             </div>
             <div className="lastPlayingSongs">
-                Last Playing<br></br>
-                <button class="lastButton">
+                Recomended Artists<br></br>
+                {songs.map((songs, i) => (
+                    <button class="recoButton"  onClick={() => props.handleChangeSong(songs.id)}>
+                        <img class="recoImg" src={coverImageUrls[i]}></img>
+                    </button>
+                ))}
+
+                {/*<button class="lastButton">
                     <img></img>
                 </button>
                 <button class="lastButton">
@@ -84,7 +92,7 @@ const HomePage = (props) => {
                 </button>
                 <button class="lastButton">
                     <img></img>
-                </button>
+            </button>*/}
             </div>
         </div>
     );
